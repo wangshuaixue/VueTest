@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>08_条件渲染</title>
+</head>
+<body>
+<!--
+1. 条件渲染指令
+  v-if
+  v-else
+  v-show
+2. 比较v-if与v-show
+  如果需要频繁切换 v-show 较好
+-->
+
+<div id="demo">
+  <!--添加/删除标签-->
+  <p v-if="ok">表白成功</p> <!-- true就显示，这里会把不匹配的标签直接去掉，只显示应该显示的-->
+  <p v-else="!ok">表白失败</p>
+
+  <!--隐藏/显示属性-->
+  <p v-show="ok2">求婚成功</p>
+  <p v-show="!ok2">求婚失败</p>
+
+  <button @click="ok=!ok;ok2=!ok2">切换</button>
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  new Vue({
+    el:'#demo',
+    data:{
+      ok:true,
+      ok2:true
+    }
+  })
+</script>
+</body>
+</html>

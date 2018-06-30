@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>06_列表渲染_过滤与排序</title>
+</head>
+<body>
+
+<!--
+1. 列表过滤
+2. 列表排序
+-->
+
+<div id="test">
+  <input type="text" v-model="search" placeholder="请输入搜索条件" >
+  <ul>
+    <li v-for="(p,index) in filterPersons" :key="index">
+      {{p.id}}--{{p.name}}--{{p.age}}
+    </li>
+  </ul>
+
+  <button @click="setOrderType(1)">升序排列</button>
+  <button @click="setOrderType(2)">降序排列</button>
+  <button @click="setOrderType(0)">默认排列</button>
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+
+  new Vue({
+    el:'#test',
+    data:{
+      persons: [
+        {id: 1, name: 'Tom', age: 15},
+        {id: 3, name: 'Jack', age: 14},
+        {id: 5, name: 'Bob', age: 16},
+        {id: 9, name: 'Rose', age: 17},
+      ],
+      search:'',
+      orderType:0
+    },
+    computed:{  //计算属性
+      filterPersons(){
+        const {persons,search,orderType}=this
+        let filterPer=[]
+        filterPer=persons.filter(p=>p.name.indexOf(search)!==-1)
+
+        if(orderType){
+          filterPer.sort(function (pre,next) {
+            if(orderType===1){
+              return pre.age-next.age
+            }else{
+              return next.age-pre.age
+            }
+          })
+        }
+
+        return filterPer
+      }
+    },
+    methods:{ //获取状态，一般写入更新状态的都写在上面调用
+      setOrderType(num){
+        this.orderType=num
+      }
+    }
+  })
+
+</script>
+</body>
+</html>

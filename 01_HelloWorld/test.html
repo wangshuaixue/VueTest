@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>01_HelloWorld</title>
+</head>
+<body>
+
+<!--
+  1. 引入Vue.js
+  2. 创建Vue对象
+    el : 指定根element(选择器)
+    data : 初始化数据(页面可以访问)
+  3. 双向数据绑定 : v-model
+  4. 显示数据 : {{xxx}}
+  5. 理解vue的mvvm实现
+-->
+
+<!--模板=静态页面+js-->
+<div id="test">
+
+  <input type="text" v-model="value">   <!--这里name是表达式   v-model   指令：它是一个vue自定义的标签属性值是表达式，初始化显示name数据，然后data数据里面的name改变的时候会传给这里，然后这里再传给大括号name-->
+  <p>Hello {{value}}</p> <!--这里name也是表达式 双大括号表达式：动态显示数据，读data里面的数据-->
+</div>
+
+<!-- el是element  选择器字符串，用来查找dom元素-->
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+  //返回的是一个实例对象
+    /*const vue=new Vue({   //配置对象，属性名是固定的就叫配置对象
+      el:'#test',  //指定用vue管理哪个标签元素，element的值是选择器字符串，管理的是这个标签下的区域
+      data:{ //包含n个数据的对象,在页面可以直接读取，初始化数据，这里的数据是可以改变的
+        name:'atguigu'
+      }
+    })*/
+//  console.log(vue._data.name)
+
+  const vue = new Vue({
+    el:'#test',
+    data:{
+      value:'zhang'
+    }
+  })
+//  console.log(vue._data.value)
+//  vue.value='san'
+//  console.log(vue._data.value)  //这里_data就是  初始化数据中的data
+</script>
+
+</body>
+</html>
